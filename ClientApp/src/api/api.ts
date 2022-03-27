@@ -13,8 +13,18 @@ const _deleteData = () => {
     return instance().delete(`/api/BullsAndCows`);
 }
 
+const _getCompanies = () => {
+    return instance().get(`/api/Companies`).then(response => response.data);
+}
+
+const _postCompany = (company : string) => {
+    return instance().post(`/api/Companies?ComapanyName=${company}`);
+}
+
 export const API = {
     getPossibleVariants: _getPossibleVariants,
     postData: _postData,
-    deleteData: _deleteData
+    deleteData: _deleteData,
+    getCompanies: _getCompanies,
+    postCompany: _postCompany
 }

@@ -6,11 +6,16 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Xtensive.Orm.Configuration;
+using Xtensive.Orm;
+using EugenS.Models;
 
 namespace EugenS
 {
     public class Startup
     {
+        public static Domain domain;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,6 +35,13 @@ namespace EugenS
             });
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            string projectJsonContent = Configuration.GetConnectionString("CompaniesDB");
+            
+            var config = new DomainConfiguration(projectJsonContent);
+            config.UpgradeMode = DomainUpgradeMode.Recreate;
+            config.Types.Register(typeof(Company).Assembly);
+            domain = Domain.Build(config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

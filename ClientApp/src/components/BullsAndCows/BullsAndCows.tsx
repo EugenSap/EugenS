@@ -28,12 +28,7 @@ let BullsAndCows = (props : BullsAndCowsProps) => {
         </div>
     )
 }
-let mapStateToProps = (state : ApplicationState) => {
-    console.log(state.bullsAndCows);
-    return {
-        state: state.bullsAndCows,
-    }
-}
+
 export default connect(
     (state: ApplicationState) => state.bullsAndCows,
     BullsAndCowsStore.actionCreators

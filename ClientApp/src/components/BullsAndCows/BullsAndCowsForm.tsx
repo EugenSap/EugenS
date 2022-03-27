@@ -15,11 +15,11 @@ const BullandCows = (props : any) => {
                     <Field name="Bulls"
                            component="input"
                            type="number"
-                           placeholder="значение"/>
+                           placeholder="Быки>"/>
                     <Field name="Cows"
                            component="input"
                            type="number"
-                           placeholder="значение"/>
+                           placeholder="Коровы"/>
                 </div>
             </div>
             <button type="submit">отправить</button>
